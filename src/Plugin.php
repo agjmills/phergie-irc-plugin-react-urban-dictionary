@@ -28,10 +28,11 @@ class Plugin extends AbstractPlugin {
         $lookup = $event->getCustomParams();
         if (count($lookup) > 0) {
             $urbanDictionary = new UrbanDictionary();
+            $query = implode(' ', $lookup);
             try {
-                $definitions = $urbanDictionary->lookup(implode(' ', $lookup));
+                $definitions = $urbanDictionary->lookup($query);
                 if (count($definitions) > 0) {
-                    $this->sendIrcResponse($event, $queue, [sprintf('%s: %s', $lookup, $definitions[0])]);
+                    $this->sendIrcResponse($event, $queue, [sprintf('%s: %s', $query, $definitions[0])]);
                 }
             } catch (\Throwable $exception) {
                 var_dump($exception);
