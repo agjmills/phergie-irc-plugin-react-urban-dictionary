@@ -29,12 +29,12 @@ class Plugin extends AbstractPlugin {
         if (count($lookup) > 0) {
             $urbanDictionary = new UrbanDictionary();
             try {
-                $definitions = $urbanDictionary->lookup($lookup);
+                $definitions = $urbanDictionary->lookup(implode(' ', $lookup));
                 if (count($definitions) > 0) {
                     $this->sendIrcResponse($event, $queue, [sprintf('%s: %s', $lookup, $definitions[0])]);
                 }
             } catch (\Throwable $exception) {
-                // squelch
+                var_dump($exception);
             }
         }
     }
