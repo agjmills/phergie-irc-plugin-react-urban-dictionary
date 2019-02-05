@@ -4,8 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b536a1a97288f6f08b093441de9e0681",
+    "content-hash": "eda8be01d51e8af10ea9cf161f4d642b",
     "packages": [
+        {
+            "name": "asdfx/urban-dictionary",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/agjmills/urban-dictionary.git",
+                "reference": "48bdab3d2d5ed0809f0c7643ca987da616996590"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agjmills/urban-dictionary/zipball/48bdab3d2d5ed0809f0c7643ca987da616996590",
+                "reference": "48bdab3d2d5ed0809f0c7643ca987da616996590",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asdfx\\UrbanDictionary\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Mills",
+                    "email": "alex@asdfx.us"
+                }
+            ],
+            "description": "A package to retrieve entries from Urban Dictionary",
+            "time": "2019-02-05T20:16:59+00:00"
+        },
         {
             "name": "evenement/evenement",
             "version": "v3.0.1",

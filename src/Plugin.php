@@ -2,10 +2,10 @@
 
 namespace Asdfx\Phergie\Plugin\UrbanDictionary;
 
+use Asdfx\UrbanDictionary\UrbanDictionary;
 use Phergie\Irc\Bot\React\AbstractPlugin;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
-use Zttp\Zttp;
 
 class Plugin extends AbstractPlugin {
 
@@ -25,6 +25,18 @@ class Plugin extends AbstractPlugin {
 
     public function handleCommand(Event $event, Queue $queue)
     {
+        $lookup = $event->getCustomParams();
+        if (count($lookup) > 0) {
+            $urbanDictionary = new UrbanDictionary();
+            try {
+                $definitions = $urbanDictionary->lookup($lookup);
+                if (count($definitions) > 0) {
+                    $this->sendIrcResponse($event, $queue, [sprintf('%s: %s', $lookup, $definitions[0])]);
+                }
+            } catch (\Throwable $exception) {
+                // squelch
+            }
+        }
     }
 
     protected function sendIrcResponse(Event $event, Queue $queue, array $ircResponse)
