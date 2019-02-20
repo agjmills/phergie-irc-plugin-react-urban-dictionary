@@ -49,6 +49,14 @@ class Plugin extends AbstractPlugin {
 
     protected function sendIrcResponseLine(Event $event, Queue $queue, $ircResponseLine)
     {
-        $queue->ircPrivmsg($event->getSource(), $ircResponseLine);
+        $words = explode(' ', $ircResponseLine);
+        $message = '';
+        foreach ($words as $word) {
+            $message .= ' ' . $word;
+            if (strlen($message) >= self::MAX_LINE_LENGTH) {
+                $queue->ircPrivmsg($event->getSource(), trim($message));
+                $message ='';
+            }
+        }
     }
 }
